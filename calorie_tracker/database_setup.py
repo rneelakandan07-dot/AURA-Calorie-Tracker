@@ -1,7 +1,27 @@
 import sqlite3
 
 def initialize_database():
-    """Creates the database and all necessary tables with their full schema."""
+    """
+    Initializes the calorie tracker database.
+
+    This function connects to the 'calorie_tracker.db' SQLite database
+    and creates the necessary tables: 'users', 'food_log', and 'food_library'.
+    It defines the schema for each table, including column names, data types,
+    and constraints like primary keys and unique constraints.
+
+    - The 'users' table stores user information, including their ID, username,
+      and daily nutritional goals.
+    - The 'food_log' table records the food items consumed by users on specific
+      dates, including the quantity and nutritional information.
+    - The 'food_library' table serves as a repository of food items, storing
+      their nutritional details per serving.
+
+    If a default user with user_id = 1 does not exist, this function also
+    inserts a default user with a daily calorie goal of 2000 kcal.
+
+    The function handles SQLite errors by printing them to the console and ensures
+    that the database connection is closed upon completion.
+    """
     conn = None
     try:
         conn = sqlite3.connect('calorie_tracker.db')
